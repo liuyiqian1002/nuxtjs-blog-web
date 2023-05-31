@@ -67,11 +67,11 @@ export default {
         {
           name: 'keywords',
           content:
-            '波波,博客,波波博客,梁凤波,bo,blog,boblog,前端开发工程师,前端性能优化,JavaScript,css,html',
+            'QQ,博客,个人博客,千千客栈,梁凤波,qq,blog,qqblog,qqinns，前端开发工程师,前端性能优化,JavaScript,css,html',
         },
         {
           name: 'description',
-          content: '波波博客 - BoBlog.com，专注于前端开发技术，前端性能优化！',
+          content: '个人博客 - 千千客栈 - qqinns.com，专注于前端开发技术，前端性能优化',
         },
       ],
     }
