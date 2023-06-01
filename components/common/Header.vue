@@ -29,7 +29,7 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
-          <a href="https://github.com/lfb/nodejs-koa-blog" target="_blank" class="nav-item">
+          <a href="https://github.com/liuyiqian1002/nodejs-koa-blog" target="_blank" class="nav-item">
             Github
           </a>
         </div>
@@ -147,7 +147,7 @@ export default {
   display: block;
   width: 100px;
   height: 56px;
-  background: url('https://cdn.boblog.com/logo.png') center center no-repeat;
+  background: url('https://cdn.qqinns.com/logo1.png') center center no-repeat;
   background-size: 100px;
 }
 .nav {

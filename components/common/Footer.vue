@@ -24,9 +24,13 @@ export default {
 
 <style scoped lang="scss">
 .footer {
+  position: absolute;
+  bottom: 0;
   display: flex;
   justify-content: space-between;
-  margin: 120px auto 64px;
+  margin: 10px auto 6px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .site {
   font-size: 14px;

@@ -52,11 +52,6 @@ export default {
       commentList: [],
     }
   },
-  computed: {
-    ...mapState({
-      userInfo: (state) => state.user.userInfo,
-    }),
-  },
   async fetch({ store }) {
     await store.dispatch('category/getCategoryData')
   },
@@ -75,6 +70,11 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    ...mapState({
+      userInfo: (state) => state.user.userInfo,
+    }),
   },
   mounted() {
     this.getComment()
