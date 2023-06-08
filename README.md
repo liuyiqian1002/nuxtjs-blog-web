@@ -4,7 +4,7 @@
 
 - 技术栈：Vue.js, Nuxt.js, Vuex
 - UI 框架：Element-UI
-- Node.js 服务端 API 接口项目：[https://github.com/lfb/nodejs-koa-blog](https://github.com/lfb/nodejs-koa-blog)
+- Node.js 服务端 API 接口项目：[https://github.com/liuyiqian1002/nodejs-koa-blog](https://github.com/liuyiqian1002/nodejs-koa-blog)
 - 欢迎大家指导~
 
 ![image.png](./boblog.png)
