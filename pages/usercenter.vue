@@ -56,7 +56,7 @@ export default {
     return {
       title: `${
         this.userInfo && this.userInfo.username
-      } - 个人中心  - boblog.com`,
+      } - 个人中心  - qqinns.com`,
       meta: [
         {
           name: 'keywords',

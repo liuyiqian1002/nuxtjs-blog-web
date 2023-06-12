@@ -1,7 +1,7 @@
 <template>
   <div class="response-wrap footer">
     <div class="site">
-      <span>© 个人博客 - 千千客栈 - BoBlog.com</span>
+      <span>© 个人博客 - 千千客栈 - qqinns.com</span>
       <span>liuyiqian1002@gmail.com</span>
     </div>
     <div class="copyright">
