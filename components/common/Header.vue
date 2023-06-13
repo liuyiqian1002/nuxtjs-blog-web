@@ -78,7 +78,7 @@
           :src="`${
             isLoginStatus
               ? 'https://cdn.qqinns.com/images/avatar_male.jpg'
-              : 'https://cdn.qqinns.com/logo.png'
+              : 'https://cdn.qqinns.com/images/logo.png'
           }`"
         />
         <span>{{ isLoginStatus ? userInfo.name : '登录' }}</span>
@@ -241,7 +241,7 @@ export default {
   display: block;
   width: 100px;
   height: 56px;
-  background: url('https://cdn.qqinns.com/logo1.png') center center no-repeat;
+  background: url('https://cdn.qqinns.com/images/logo1.png') center center no-repeat;
   background-size: 100px;
 }
 .nav {

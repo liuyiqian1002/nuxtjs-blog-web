@@ -6,7 +6,7 @@
       </div>
       <div class="form-list">
         <div class="logo">
-          <img src="https://cdn.qqinns.com/logo1.png" alt="logo" />
+          <img src="https://cdn.qqinns.com/images/logo1.png" alt="logo" />
         </div>
         <div v-if="!isLogin" class="form-item">
           <input
