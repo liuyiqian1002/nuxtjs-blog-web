@@ -3,7 +3,8 @@ import { setToken } from "@/lib/auth";
 
 const state = () => ({
   userInfo: null,
-  isLoginStatus: false
+  isLoginStatus: false,
+  navIndex: 0
 })
 
 const mutations = {
@@ -12,6 +13,9 @@ const mutations = {
   },
   SET_LOGIN_STATUS(state, data) {
     state.isLoginStatus = data
+  },
+  SET_NAV_INDEX(state, data) {
+    state.navIndex = data
   }
 }
 

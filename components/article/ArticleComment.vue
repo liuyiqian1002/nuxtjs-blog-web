@@ -3,7 +3,7 @@
     <div class="comment">
       <div class="comment-from">
         <div class="comment-avatar">
-          <img src="https://cdn.boblog.com/avatar.png" alt="avatar" />
+          <img src="https://cdn.qqinns.com/avatar.png" alt="avatar" />
         </div>
         <div class="comment-textarea">
           <textarea

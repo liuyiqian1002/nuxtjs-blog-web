@@ -41,7 +41,6 @@
 <script>
 import { mapState } from 'vuex'
 import { getArticleList } from '@/request/api/article'
-
 export default {
   name: 'HomeIndex',
   async asyncData(context) {

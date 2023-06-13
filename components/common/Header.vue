@@ -13,23 +13,50 @@
                 'nav-item-active': navIndex === index,
               },
             ]"
-            @click="jumpURL(item.router)"
+            @click="jumpURL(item.router, index)"
           >
             {{ item.title }}
           </div>
-          <div v-if="Array.isArray(categoryList) && categoryList.length">
+          <div
+            v-for="(item, index) in categoryList"
+            :key="'s' + index"
+            :class="[
+              'nav-item',
+              {
+                'nav-item-active': navIndex === index + nav.length,
+              },
+            ]"
+            @click="jumpCategory(item.id, index)"
+          >
+            <!-- <a class="category-links" :href="'/?category_id=' + item.id">
+              {{ item.name }}</a
+            > -->
+            {{ item.name }}
+          </div>
+          <div v-if="categoryList && categoryList.length > max">
             <el-dropdown>
-              <span class="el-dropdown-link" >
-                分类<i class="el-icon-arrow-down el-icon--right"></i>
+              <span class="el-dropdown-link">
+                更多<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item v-for="item in categoryList" :key="item.id">
-                  <a class="category-links" :href="'/?category_id=' + item.id">{{ item.name }}</a>
+                <el-dropdown-item
+                  v-for="item in categoryList.slice(max)"
+                  :key="item.id"
+                >
+                  <a
+                    class="category-links"
+                    :href="'/?category_id=' + item.id"
+                    >{{ item.name }}</a
+                  >
                 </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>
-          <a href="https://github.com/liuyiqian1002/nodejs-koa-blog" target="_blank" class="nav-item">
+          <a
+            href="https://github.com/liuyiqian1002/nodejs-koa-blog"
+            target="_blank"
+            class="nav-item"
+          >
             Github
           </a>
         </div>
@@ -45,15 +72,40 @@
           </el-input>
         </div>
       </div>
+      <div class="avatar">
+        <img
+          @click="onAvatarClick"
+          :src="`${
+            isLoginStatus
+              ? 'https://cdn.qqinns.com/images/avatar_male.jpg'
+              : 'https://cdn.qqinns.com/logo.png'
+          }`"
+        />
+        <span>{{ isLoginStatus ? userInfo.name : '登录' }}</span>
+      </div>
     </div>
+    <el-dialog
+      :visible.sync="isLogin"
+      width="880px"
+      top="0"
+      :lock-scroll="true"
+      :before-close="handleClose"
+      class="login-dialog"
+    >
+      <LoginForm @on-success="loginFormSuccess" />
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import LoginForm from '@/components/common/LoginForm'
 
 export default {
   name: 'VHeader',
+  components: {
+    LoginForm,
+  },
   props: {
     isCategory: {
       type: Boolean,
@@ -63,34 +115,58 @@ export default {
   data() {
     return {
       keyword: '',
-      navIndex: 0,
+      navIndex: null,
+      max: 5,
       nav: [
         {
           title: '首页',
           router: '/',
-        }
+        },
       ],
+      more: [],
+      isLogin: false,
     }
   },
   computed: {
     ...mapState({
       userInfo: (state) => state.user.userInfo,
+      // navIndex: (state) => state.user.navIndex,
       isLoginStatus: (state) => state.user.isLoginStatus,
-      categoryList: (state) => state.category.categoryList
+      categoryList: (state) => state.category.categoryList,
     }),
   },
   watch: {
-    isLoginStatus: {
-      handler() {
-        this.handleNav()
+    $route: {
+      handler(to, from) {
+        console.log(to, from)
       },
     },
   },
+  created() {
+    if (process.client) {
+      this.navIndex = localStorage.getItem('navIndex') || 0
+    }
+  },
   mounted() {
-    this.handleNav()
+    // this.handleNav()
     this.getCategory()
+    const navIndex = localStorage.getItem('navIndex')
+    this.navIndex = Number(navIndex)
   },
   methods: {
+    handleClose() {
+      this.isLogin = false
+    },
+    loginFormSuccess() {
+      this.isLogin = false
+    },
+    onAvatarClick() {
+      if (this.isLoginStatus) {
+        this.jumpURL('/usercenter')
+      } else {
+        this.isLogin = true
+      }
+    },
     getCategory() {
       this.$store.dispatch('category/getCategoryData')
     },
@@ -98,33 +174,31 @@ export default {
       if (!this.keyword) return false
       window.location.href = `/?keyword=${this.keyword}`
     },
-    handleNav() {
-      if (this.isLoginStatus) {
-        this.nav.splice(2, 0, {
-          title: '个人中心',
-          router: '/usercenter',
-        })
-      } else {
-        const index = this.nav.findIndex(
-          (item) => item.router === '/usercenter'
-        )
-        if (index !== -1) {
-          this.nav.splice(index, 1)
-        }
-      }
-    },
     // 返回首页
     goHome() {
       window.location.href = '/'
     },
     // 跳转URL
-    jumpURL(router) {
+    jumpURL(router, navIndex) {
       const { category_id, keyword } = this.$route.query
       if (category_id || keyword) {
         window.location.href = router
       } else {
         this.$router.push(router)
       }
+      if (navIndex >= 0) {
+        this.navIndex = navIndex
+        localStorage.setItem('navIndex', navIndex)
+      }
+    },
+    jumpCategory(categoryId, index) {
+      const { protocol, host } = window.location
+      window.location.href = `${protocol}//${host}/?category_id=${categoryId}`
+      // this.$router.push(`/?category_id=${categoryId}`)
+      const navIndex = this.nav.length + index
+      // this.$store.commit('SET_NAV_INDEX', navIndex)
+      this.navIndex = navIndex
+      localStorage.setItem('navIndex', navIndex)
     },
   },
 }
@@ -133,6 +207,26 @@ export default {
 <style scoped lang="scss">
 .header {
   border-bottom: 1px solid #f0f0f0;
+  .avatar {
+    position: absolute;
+    right: 80px;
+    top: 8px;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    span {
+      display: inline-block;
+      width: 60px;
+    }
+  }
 }
 .header-inner {
   box-sizing: border-box;
@@ -217,6 +311,14 @@ export default {
 
 .search {
   cursor: pointer;
+}
+.login-dialog {
+  /deep/ .el-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media screen and (max-width: 540px) {
