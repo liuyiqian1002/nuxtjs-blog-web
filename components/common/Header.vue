@@ -74,12 +74,12 @@
       </div>
       <div class="avatar">
         <img
-          @click="onAvatarClick"
           :src="`${
             isLoginStatus
               ? 'https://cdn.qqinns.com/images/avatar_male.jpg'
               : 'https://cdn.qqinns.com/images/logo.png'
           }`"
+          @click="onAvatarClick"
         />
         <span>{{ isLoginStatus ? userInfo.name : '登录' }}</span>
       </div>
