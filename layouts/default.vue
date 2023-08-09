@@ -3,6 +3,9 @@
     <Header />
     <Nuxt />
     <Footer />
+    <div style="position: fixed; top: 0;z-index: -1; background-color: #FFFAFA; width: 100%;">
+      <vue-particles color="#dedede"></vue-particles>
+    </div>
   </div>
 </template>
 <script>

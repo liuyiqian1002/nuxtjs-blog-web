@@ -31,6 +31,7 @@ export default {
     '@/plugins/axios-ports',
     '@/plugins/md',
     '@/plugins/route',
+    '@/plugins/particles',
     { src: '@/plugins/scrollTo', mode: 'client' },
     '@/plugins/element-ui'
   ],
@@ -53,6 +54,6 @@ export default {
   env: envConfig,
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [/^element-ui/],
+    transpile: [/^element-ui/,'vue-particles'],
   }
 }
