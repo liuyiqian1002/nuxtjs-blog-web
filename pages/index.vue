@@ -5,13 +5,13 @@
       class="response-wrap article"
     >
       <li v-for="item in article.data" :key="item.id" class="article-list">
-        <a :href="'/article?id=' + item.id" class="article-item" @click="(e) => jumpURL(e, item.id)">
+        <a class="article-item">
           <div class="article-image">
             <img :src="item.img_url" :alt="item.title" />
           </div>
 
           <div class="article-item-content">
-            <h1 class="article-title">
+            <h1 class="article-title" @click="(e) => jumpURL(e, item.id)">
               {{ item.title }}
             </h1>
             <div class="article-description">
@@ -161,6 +161,7 @@ export default {
 .article-list:hover .article-title {
   color: #0164da;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .article-item {
