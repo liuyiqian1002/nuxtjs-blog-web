@@ -20,6 +20,9 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
+  styleResources: {
+    scss: './assets/css/variables.scss',
+  },
   css: [
     '@/assets/css/common.css',
     'element-ui/lib/theme-chalk/index.css'
@@ -33,7 +36,7 @@ export default {
     '@/plugins/route',
     '@/plugins/particles',
     { src: '@/plugins/scrollTo', mode: 'client' },
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,8 +51,10 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
     'cookie-universal-nuxt',
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
+    
   ],
   env: envConfig,
   // Build Configuration: https://go.nuxtjs.dev/config-build

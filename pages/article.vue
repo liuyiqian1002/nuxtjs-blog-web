@@ -2,7 +2,7 @@
   <div>
     <div v-if='article'>
       <div class="response-wrap">
-        <div  class="article">
+        <div class="article">
           <h1 class="title">
             {{ article.title }}
           </h1>
@@ -149,7 +149,7 @@ li {
 .title {
   font-size: 36px;
   font-weight: 600;
-  color: #222222;
+  color: $gray2-color;
   line-height: 42px;
   text-align: center;
 }

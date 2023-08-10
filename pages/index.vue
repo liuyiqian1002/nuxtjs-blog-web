@@ -5,7 +5,7 @@
       class="response-wrap article"
     >
       <li v-for="item in article.data" :key="item.id" class="article-list">
-        <a class="article-item">
+        <div class="article-item">
           <div class="article-image">
             <img :src="item.img_url" :alt="item.title" />
           </div>
@@ -22,7 +22,7 @@
               {{ item.category_info ? item.category_info.name : '' }}
             </div>
           </div>
-        </a>
+        </div>
       </li>
     </ul>
     <div v-else class="empty-data">
@@ -155,11 +155,11 @@ export default {
   display: block;
   clear: both;
   padding: 32px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #666;
 }
 
 .article-list:hover .article-title {
-  color: #0164da;
+  color: #f9fafc;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -190,20 +190,20 @@ export default {
 .article-title {
   font-weight: bold;
   font-size: 18px;
-  color: #404040;
+  color: #ddd;
   padding: 0;
   margin: 0;
 }
 
 .article-description {
   font-size: 14px;
-  color: #404040;
+  color: #ddd;
   margin: 12px 0 24px;
 }
 
 .article-category {
   font-size: 14px;
-  color: #808080;
+  color: #bbb;
 }
 
 .empty-data {
