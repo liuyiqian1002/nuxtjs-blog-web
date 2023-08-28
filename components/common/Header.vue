@@ -262,7 +262,7 @@ export default {
   display: block;
   text-align: center;
   font-size: 16px;
-  color: #222222;
+  color: #ccc;
   text-decoration: none;
   &-active {
     color: #2d8cf0;
